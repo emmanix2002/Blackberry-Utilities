@@ -103,7 +103,7 @@ public class ImageLoader {
 	 * @return
 	 */
 	public static String setBaseImagePath(String new_path){
-		new_path = (new_path == null)? "":new_path;
+		new_path = (new_path == null)? "":new_path+"/";
 		ImageLoader.images_path = new_path;
 		return ImageLoader.images_path;
 	}
@@ -114,7 +114,7 @@ public class ImageLoader {
 	 * @return String
 	 */
 	public static String setDefaultImageSubFolder(String folder_name){
-		folder_name = (folder_name == null)? "":folder_name;
+		folder_name = (folder_name == null)? "":folder_name+"/";
 		ImageLoader.images_subfolder_default = folder_name;
 		return ImageLoader.images_subfolder_default;
 	}
@@ -131,13 +131,13 @@ public class ImageLoader {
 			if(classx == null){
 				throw new Exception("Could not get the class reference...");
 			}
-			String img_specific = ImageLoader.images_path+"/"+ImageLoader.getSpecificImageSubFolder()+"/"+filename;
+			String img_specific = ImageLoader.images_path+ImageLoader.getSpecificImageSubFolder()+"/"+filename;
 			InputStream input_stream = classx.getResourceAsStream("/"+img_specific);
 			if(input_stream != null){
 				System.out.println("Using image path: "+img_specific);
 				bitmap_path = img_specific;
 			} else {
-				String img_default = ImageLoader.images_path+"/"+ImageLoader.images_subfolder_default+"/"+filename;
+				String img_default = ImageLoader.images_path+ImageLoader.images_subfolder_default+filename;
 				input_stream = classx.getResourceAsStream("/"+img_default);
 				if(input_stream != null){
 					System.out.println("Using image path: "+img_default);
